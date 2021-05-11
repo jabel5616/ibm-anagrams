@@ -1,7 +1,7 @@
 name: ci
 on:
   push:
-    barnches:
+    branches:
       - docker 
 jobs:
   test:
@@ -10,7 +10,7 @@ jobs:
       - run: |
           set -x
           git clone https://github.com/jabel5616/ibm-anagrams.git
-          docker build --tag imb-anagrams:test ibm-anagrams/
+          docker build --tag ibm-anagrams:test ibm-anagrams/
           docker run --name prueba --volume ${PWD}/ibm-anagrams/data:/data ibm-anagrams:test
           while true; do
           sleep 10

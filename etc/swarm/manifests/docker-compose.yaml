@@ -1,1 +1,7 @@
 #Hola
+services:
+  anagrams:
+    image: jabel5616/ibm-anagrams:latest
+    volumes:
+      - /tmp/ibm-anagrams/data:/data:ro
+  versions: '3.8'

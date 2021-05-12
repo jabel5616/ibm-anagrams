@@ -1,6 +1,8 @@
 #Hola
 services:
   anagrams:
+    deploy:
+      replicas: 2
     image: jabel5616/ibm-anagrams:latest
     volumes:
       - /tmp/ibm-anagrams/data:/data:ro

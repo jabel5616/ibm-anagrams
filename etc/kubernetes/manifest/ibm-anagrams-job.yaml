@@ -1,0 +1,50 @@
+apiVersion: batch/v1
+kind: Job
+metadata: 
+  name: ibm-anagrams-job
+spec:
+  container:
+    - 
+      image: jabel5616/ibm-anagrams:latest
+      name: ibm-anagrams.container
+      volumeMounts:
+        -
+          mountPath: /data
+          name: ibm-anagrams-volume
+          readOnly: true
+  initContainers:
+    -
+      command:
+        - sh
+        - '-c'
+        - 'set -x; cd downloads;rm -f ${FILENAME}; wget ${URL}/${FILENAME}'
+      env:
+        -
+        
+          name: FILENAME
+          valueFrom: 
+            secretReference
+              key: filename
+              name: ibm-anagrams-secrect
+        -
+          name: URL
+          valueFrom: 
+            secretReference
+              key: url
+              name: ibm-anagrams-secrect
+      image: busybox
+      name: ibm-anagrams.initcontainer
+      volumeMounts:
+        -
+          mountPath./downloads
+          name: ibm.anagrams-volume
+          readOnly: false
+    restartPolicy: OnFailure
+    volumes:
+    -
+        #emptyDir: {}
+        name: ibm-anagrams-volume
+        persistenVolumeClaim:
+          claimName: ibm-anagrams-volume
+          readOnly: false
+        

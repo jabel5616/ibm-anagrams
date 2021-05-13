@@ -3,6 +3,7 @@ kind: Job
 metadata: 
   name: ibm-anagrams-job
 spec:
+  template: 
   container:
     - 
       image: jabel5616/ibm-anagrams:latest

@@ -24,20 +24,20 @@ spec:
         
           name: FILENAME
           valueFrom: 
-            secretReference
+            secretReference:
               key: filename
               name: ibm-anagrams-secrect
         -
           name: URL
           valueFrom: 
-            secretReference
+            secretReference:
               key: url
               name: ibm-anagrams-secrect
       image: busybox
       name: ibm-anagrams.initcontainer
       volumeMounts:
         -
-          mountPath./downloads
+          mountPath: /downloads
           name: ibm.anagrams-volume
           readOnly: false
     restartPolicy: OnFailure
